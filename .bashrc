@@ -125,5 +125,6 @@ LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export DISPLAY=:0.0
 export PATH=$PATH:/home/adrs
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
+
+alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
