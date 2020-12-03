@@ -127,4 +127,4 @@ export DISPLAY=:0.0
 export PATH=$PATH:/home/adrs
 
 
-alias gdotf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias gdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'

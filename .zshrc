@@ -168,6 +168,6 @@ alias clip="clip.exe"
 alias cpwd="pwd | tr -d '\n' | clip.exe && echo 'pwd copied to clipboard'"
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
 
-alias gdotf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias gdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
