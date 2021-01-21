@@ -19,7 +19,7 @@ set title
 syntax enable                           " Enables syntax highlighting
 set spelllang=en,es                     " Corregir palabras usando diccionarios en inglés y español
 set hidden                              " Required to keep multiple buffers open multiple buffers
-set nowrap                              " Display long lines as just one line
+" set nowrap                              " Display long lines as just one line
 set pumheight=10                        " Makes pop up menu smaller
 set fileencoding=utf-8                  " The encoding written to file
 set encoding=utf-8                      " The encoding displayed
@@ -142,8 +142,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 Plug 'airblade/vim-rooter'
-" Quick scope
-Plug 'unblevable/quick-scope'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 " file manager
@@ -621,8 +619,8 @@ call which_key#register('<Space>', "g:which_key_map")
 " Trigger a highlight in the appropriate direction when pressing these keys:
 "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
-highlight QuickScopePrimary guifg='#00D7F1' gui=underline ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg='#CEFF9E' gui=underline ctermfg=81 cterm=underline
+" highlight QuickScopePrimary guifg='#00D7F1' gui=underline ctermfg=155 cterm=underline
+" highlight QuickScopeSecondary guifg='#CEFF9E' gui=underline ctermfg=81 cterm=underline
 
 "let g:qs_max_chars=150
 

@@ -160,7 +160,6 @@ alias webdev="/mnt/d/webDevelopment"
 alias proyectos="/home/adrs/proyectos"
 alias pz="/mnt/d/Documentos/platzi"
 alias lv="nvim -c':e#<1'"
-alias v="nvim"
 alias vrc="nvim ~/.vimrc"
 alias zrc="nvim ~/.zshrc"
 alias brc="nvim ~/.bashrc"
@@ -168,8 +167,21 @@ alias x=exit
 alias cli="clip.exe"
 alias cpwd="pwd | tr -d '\n' | clip.exe && echo 'pwd copied to clipboard'"
 alias gdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias v="nvim"
 alias e="emacs"
 alias nf='neofetch'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
+
+c(){
+	  folder="compilers/"
+	  if [[ ! -d $folder   ]]; then
+	    mkdir $folder
+	    fi
+	    entry=$(echo "$1" | sed 's/\(\w\)\(\.c\)/\1/g')
+		   cc -o $entry $1
+	     mv $entry $folder
+	     ./$folder/$entry
+}
+
