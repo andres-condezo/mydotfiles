@@ -3,7 +3,7 @@
 
 filetype plugin indent on
 
-set ignorecase                        " Ignorar mayúsculas al hacer una búsqueda
+set ignorecase                          "Ignorar mayúsculas al hacer una búsqueda
 set smartcase                         " No ignorar mayúsculas si la palabra a buscar contiene mayúsculas
 " Search fown into subfolders
 " Provides tab-completion for all file-related tasks
@@ -31,9 +31,6 @@ set splitbelow                          " Horizontal splits will automatically b
 set splitright                          " Vertical splits will automatically be to the right
 set t_Co=256                            " Support 256 colors
 set conceallevel=0                      " So that I can see `` in markdown files
-set shiftwidth=2                        " Change the number of space characters inserted for indentation
-set smartindent                         " Makes indenting smart
-set autoindent                          " Good auto indent
 set laststatus=0                        " Always display the status line
 set number                              " Line numbers
 set relativenumber
@@ -66,12 +63,18 @@ set wildmode=longest,list,full
 "-------------------------------- TABS ------------------------------------------------------------
 
 " Indentación a 2 espacios
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=8
+set shiftwidth=8
+"set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set softtabstop=8
 set shiftround
 set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
-set expandtab                           " Converts tabs to spaces
+
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+
+set noexpandtab
+"set expandtab                           " Converts tabs to spaces
 
 "--------------------------------------------------------------------------------------------------
 "------------------------------- MAP LEADER -------------------------------------------------------
@@ -150,18 +153,22 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'vim-syntastic/syntastic'
 " support sass colors
 Plug 'shmargum/vim-sass-colors'
+" pandoc
+Plug 'vim-pandoc/vim-pandoc'
+" help you read complex code by showing diff level of parentheses in diff color
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 
 "--------------------------------------------------------------------------------------------------
 "--------------------------------  COLOR SCHEME  --------------------------------------------------
 
-colorscheme nord 
+colorscheme gruvbox 
 
-"let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_dark = "hard"
 "let g:molokai_original = 1
 "let g:edge_style = 'nord-vim'
-let g:airline_theme = 'nord'
+let g:airline_theme = 'gruvbox'
 
 "--------------------------------------------------------------------------------------------------
 "----------------------------------- AIRLINE ------------------------------------------------------
@@ -210,6 +217,11 @@ let g:airline_theme = 'nord'
 
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 3
+
+"--------------------------------------------------------------------------------------------------
+"---------------------- Rainbow Parentheses Improved ----------------------------------------------
+
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle"
 
 "--------------------------------------------------------------------------------------------------
 "-------------------------------- STARTIFY --------------------------------------------------------
@@ -789,3 +801,4 @@ map <Leader>onq :on<CR> q!<CR>
 map <Leader>onw :on<CR> wq<CR>
 
 
+set noexpandtab
