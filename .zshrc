@@ -170,6 +170,7 @@ alias gdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias v="nvim"
 alias e="emacs"
 alias nf='neofetch'
+alias docd='/mnt/d/Documentos'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
