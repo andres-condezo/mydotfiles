@@ -135,14 +135,14 @@ Plug 'turbio/bracey.vim'
 " Show a git dif in the sign column
 Plug 'airblade/vim-gitgutter'
 " indent guides
-Plug 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 " See https://github.com/iamcco/markdown-preview.nvim/issues/50
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install()  }, 'for': ['markdown', 'vim-plug'] }
 " Start Screen
 Plug 'mhinz/vim-startify'
 " Snipts Engines
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -361,6 +361,7 @@ command! -bang -nargs=* GGrep
 "--------------------------------------------------------------------------------------------------
 "------------------------------------ COC ---------------------------------------------------------
 
+
 "TextEdit fail if hidden is not set.
 set hidden
 
@@ -525,48 +526,12 @@ nnoremap <silent><nowait> <space>p :<C-u>CocListResume<CR>"
 "--------------------------------------------------------------------------------------------------
 "----------------------- -------- COC EXPLORER ----------------------------------------------------
 
-let g:coc_explorer_global_presets = {
-\   '.vim': {
-\     'root-uri': '~/.vim',
-\   },
-\   'tab': {
-\     'position': 'tab',
-\     'quit-on-open': v:true,
-\   },
-\   'floating': {
-\     'position': 'floating',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingTop': {
-\     'position': 'floating',
-\     'floating-position': 'center-top',
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingLeftside': {
-\     'position': 'floating',
-\     'floating-position': 'left-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'floatingRightside': {
-\     'position': 'floating',
-\     'floating-position': 'right-center',
-\     'floating-width': 50,
-\     'open-action-strategy': 'sourceWindow',
-\   },
-\   'simplify': {
-\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-\   }
-\ }
+
 
 
 "--------------------------------------------------------------------------------------------------
 "-------------------------------- SYNTASTIC -------------------------------------------------------
 
-" Explorer
-nmap <space>e :CocCommand explorer<CR>
-nmap <space>f :CocCommand explorer --preset floating<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -580,88 +545,20 @@ let g:syntastic_check_on_wq = 0
 "--------------------------------------------------------------------------------------------------
 "------------------------------ NEOSNIPPETS -------------------------------------------------------
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
+" let g:deoplete#enable_at_startup = 1
 
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/neosnippet.vim'
+" Plug 'Shougo/neosnippet-snippets'
 
 "--------------------------------------------------------------------------------------------------
 "---------------------------------- WHICH KEY------------------------------------------------------
-
-" Map leader to which_key
-nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
-
-" Create map to add keys to
-let g:which_key_map =  {}
-" Define a separator
-let g:which_key_sep = '→'
-" set timeoutlen=100
-
-" Not a fan of floating windows for this
-let g:which_key_use_floating_win = 0
-
-" Change the colors if you want
-highlight default link WhichKey          Operator
-highlight default link WhichKeySeperator DiffAdded
-highlight default link WhichKeyGroup     Identifier
-highlight default link WhichKeyDesc      Function
-
-" Hide status line
-autocmd! FileType which_key
-autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
-
-" Single mappings
-let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment'  ]
-let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer'  ]
-let g:which_key_map['f'] = [ ':Files'                     , 'search files'  ]
-let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below' ]
-let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger'  ]
-let g:which_key_map['S'] = [ ':Startify'                  , 'start screen'  ]
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text'  ]
-let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right' ]
-let g:which_key_map['z'] = [ 'Goyo'                       , 'zen'  ]
-
-" s is for search
-let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
-      \ }
-
-" Register which key map
-call which_key#register('<Space>', "g:which_key_map")
-
 
 "--------------------------------------------------------------------------------------------------
 "------------------------------------- QUICK SCOPE ------------------------------------------------
@@ -729,7 +626,7 @@ nmap <Leader>s <Plug>(easymotion-s2)
 
 let NERDTreeQuitOnOpen=1
 nmap <Leader>nt :NERDTreeFind<CR>
-nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-t> :NERDTreeToggle<CR>
 
 " NERDTreeGitStatusUseNerdFonts
 let g:NERDTreeGitStatusUseNerdFonts = 1 
@@ -845,6 +742,9 @@ map <Leader>onw :on<CR> wq<CR>
 
 set noexpandtab
 
+"--------------------------------------------------------------------------------------------------
+"----------------------------------  EXCECUTION  -----------------------------------------------------
+
 augroup exe_code
   autocmd!
 
@@ -865,3 +765,9 @@ augroup exe_code
   \ :sp<CR> :term ~/c %<CR> :startinsert<CR>
 
 augroup END
+
+"--------------------------------------------------------------------------------------------------
+"----------------------------------  FOLD  -----------------------------------------------------
+
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
