@@ -769,5 +769,8 @@ augroup END
 "--------------------------------------------------------------------------------------------------
 "----------------------------------  FOLD  -----------------------------------------------------
 
+" Save and Load fold files
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+
+map <Leader>f zfa
