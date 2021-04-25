@@ -96,6 +96,9 @@ Plug 'sainnhe/forest-night'
 Plug 'sainnhe/edge'
 Plug 'gilgigilgil/anderson.vim'
 Plug 'ntk148v/vim-horizon'
+Plug 'jmoggee/mirage.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'ghifarit53/tokyonight-vim'
 
 " IDE
 " Better Syntax Support
@@ -158,17 +161,48 @@ Plug 'vim-pandoc/vim-pandoc'
 " help you read complex code by showing diff level of parentheses in diff color
 Plug 'luochen1990/rainbow'
 
+Plug 'Yggdroot/indentLine'
+
 call plug#end()
+
+let g:indentLine_char       = '▏'
+let g:indentLine_setConceal = 0
+set listchars+=tab:│\       " this is i_CTRL-k vv and escaped space (\ )
+set list
 
 "--------------------------------------------------------------------------------------------------
 "--------------------------------  COLOR SCHEME  --------------------------------------------------
 
-colorscheme gruvbox 
+" colorscheme gruvbox 
+" colorscheme nord 
 
-let g:gruvbox_contrast_dark = "hard"
+" let g:gruvbox_contrast_dark = "hard"
 "let g:molokai_original = 1
 "let g:edge_style = 'nord-vim'
-let g:airline_theme = 'gruvbox'
+"let g:airline_theme = 'nord'
+
+
+" set background=dark
+" colorscheme mirage
+" let g:mirage_terminal_italics=1
+
+
+set termguicolors
+
+let g:tokyonight_transparent_background = 1
+" let g:tokyonight_menu_selection_background: 'blue'
+" let g:tokyonight_disable_italic_comment: 0
+" let g:tokyonight_cursor: 'auto'
+
+let g:airline_theme = "tokyonight"
+
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 0
+silent! colorscheme tokyonight
+
+
+colorscheme tokyonight
+
 
 "--------------------------------------------------------------------------------------------------
 "----------------------------------- AIRLINE ------------------------------------------------------
@@ -215,8 +249,12 @@ let g:airline_theme = 'gruvbox'
 "--------------------------------------------------------------------------------------------------
 "------------------------------ INDENT GUIDES -----------------------------------------------------
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 3
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_color_change_percent = 90
+let g:indent_guides_guide_size = 4
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=purple   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkblue ctermbg=4
 
 "--------------------------------------------------------------------------------------------------
 "---------------------- Rainbow Parentheses Improved ----------------------------------------------
@@ -740,6 +778,10 @@ map <Leader>cc ct
 " Call reload to apply the latest .vimrc contents
 command! Reload execute "source ~/.vimrc"
 
+" map <Leader>in :IndentGuidesToogle<CR>
+
+nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
+
 " FZF BLines
 
 "--------------------------------------------------------------------------------------------------
@@ -802,3 +844,24 @@ map <Leader>onw :on<CR> wq<CR>
 
 
 set noexpandtab
+
+augroup exe_code
+  autocmd!
+
+  "execute python code
+  autocmd FileType python nnoremap <buffer> <leader>p
+  \ :sp<CR> :term python3 %<CR> :startinsert<CR>
+
+  "execute javaScript code
+  autocmd FileType javascript nnoremap <buffer> <leader>p
+  \ :sp<CR> :term nodejs %<CR> :startinsert<CR>
+
+  "execute bash code
+  autocmd FileType bash,sh nnoremap <buffer> <leader>p
+  \ :sp<CR> :term bash %<CR> :startinsert<CR>
+
+  "execute bash code
+  autocmd FileType c nnoremap <buffer> <leader>p
+  \ :sp<CR> :term ~/c %<CR> :startinsert<CR>
+
+augroup END
