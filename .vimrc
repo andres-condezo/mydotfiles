@@ -163,6 +163,8 @@ Plug 'luochen1990/rainbow'
 
 Plug 'Yggdroot/indentLine'
 
+Plug 'davidhalter/jedi-vim'
+
 call plug#end()
 
 let g:indentLine_char       = '▏'
