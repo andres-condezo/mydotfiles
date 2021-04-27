@@ -141,8 +141,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install()  }, 'for':
 " Start Screen
 Plug 'mhinz/vim-startify'
 " Snipts Engines
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -362,6 +362,7 @@ command! -bang -nargs=* GGrep
 
 "--------------------------------------------------------------------------------------------------
 "------------------------------------ COC ---------------------------------------------------------
+"
 
 
 "TextEdit fail if hidden is not set.
@@ -524,9 +525,9 @@ nnoremap <silent><nowait> <space>k :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p :<C-u>CocListResume<CR>"
 
-
 "--------------------------------------------------------------------------------------------------
 "----------------------- -------- COC EXPLORER ----------------------------------------------------
+"
 let g:coc_explorer_global_presets = {
 \   '.vim': {
 \     'root-uri': '~/.vim',
@@ -582,20 +583,17 @@ let g:syntastic_check_on_wq = 0
 "--------------------------------------------------------------------------------------------------
 "------------------------------ NEOSNIPPETS -------------------------------------------------------
 
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
-" let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
 
-" Plug 'Shougo/neosnippet.vim'
-" Plug 'Shougo/neosnippet-snippets'
-
-"--------------------------------------------------------------------------------------------------
-"---------------------------------- WHICH KEY------------------------------------------------------
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 "--------------------------------------------------------------------------------------------------
 "------------------------------------- QUICK SCOPE ------------------------------------------------
