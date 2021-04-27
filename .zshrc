@@ -171,6 +171,8 @@ alias v="nvim"
 alias e="emacs"
 alias nf='neofetch'
 alias docd='/mnt/d/Documentos'
+alias py='python3'
+alias ipy='ipython3'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
