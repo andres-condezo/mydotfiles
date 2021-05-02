@@ -154,6 +154,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 " sintaxis highlighting
 Plug 'vim-syntastic/syntastic'
+let g:syntastic_python_checkers = ['pylint']
 " support sass colors
 Plug 'shmargum/vim-sass-colors'
 " pandoc
@@ -775,7 +776,6 @@ map <Leader>onq :on<CR> q!<CR>
 map <Leader>onw :on<CR> wq<CR>
 
 
-set noexpandtab
 
 "--------------------------------------------------------------------------------------------------
 "----------------------------------  EXCECUTION  -----------------------------------------------------
@@ -806,6 +806,10 @@ augroup END
 
 " Save and Load fold files
 autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+"autocmd BufWinEnter *.* silent loadview
 
 map <Leader>f zfa
+
+
+map <C-n> :set noexpandtab<CR>
+set noexpandtab
