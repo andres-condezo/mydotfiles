@@ -126,5 +126,8 @@ LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
 export DISPLAY=:0.0
 export PATH=$PATH:/home/adrs
 
+export EDITOR='nvim'
+export VISUAL='nvim'
+
 
 alias gdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
