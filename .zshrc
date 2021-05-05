@@ -183,6 +183,7 @@ alias docd='/mnt/d/Documentos'
 alias py='python3'
 alias ipy='ipython3'
 alias hol='cd /mnt/d/Documentos/Holberton'
+alias rng='ranger'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
