@@ -633,7 +633,9 @@ let g:pickachu_default_color_format = "hex"
 
 let g:vcoolor_lowercase = 1
 let g:vcoolor_disable_mappings = 1
-let g:vcoolor_map = '<leader>g'
+let g:vcoolor_map = '<leader>ñg'
+let g:vcoolor_map = '<leader>ñ'
+let g:vcool_ins_rgb_map = '<leader>ñj'
 
 let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --show-palette --color '
 
