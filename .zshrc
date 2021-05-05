@@ -82,6 +82,11 @@ plugins=(git
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+#
+
+ # bindkey -M viins 'jj' vi-cmd-mode
+#
+ # VIM_MODE_VICMD_KEY='^D'
 
 # vi mode
 bindkey -v
@@ -107,13 +112,20 @@ function zle-keymap-select {
   fi
 }
 zle -N zle-keymap-select
-zle-line-init() {
-    zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
-    echo -ne "\e[5 q"
-}
+# zle-line-init() {
+#     zle -K viins # initiate `vi insert` as keymap (can be removed if `bindkey -V` has been set elsewhere)
+#     echo -ne "\e[5 q"
+# }
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+bindkey -M viins 'jj' vi-cmd-mode
+#
+# bindkey jj vi-cmd-mode
+# bindkey -s jj '\e'
+
+# VIM_MODE_VICMD_KEY='^D'
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -189,16 +201,70 @@ alias rng='ranger'
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
 
 c(){
-	  folder="compilers/"
-	  if [[ ! -d $folder   ]]; then
-	    mkdir $folder
-	    fi
-	    entry=$(echo "$1" | sed 's/\(\w\)\(\.c\)/\1/g')
-		   cc -o $entry $1
-	     mv $entry $folder
-	     ./$folder/$entry
+folder="compilers/"
+  if [[ ! -d $folder   ]]; then
+    mkdir $folder
+  fi
+  entry=$(echo "$1" | sed 's/\(\w\)\(\.c\)/\1/g')
+  cc -o $entry $1
+  mv $entry $folder
+  ./$folder/$entry
 }
+
+ctrlz() {
+  if [[ $#BUFFER == 0 ]]; then
+    fg >/dev/null 2>&1 && zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N ctrlz
+bindkey '^Z' ctrlz
+
+bindkey -M menuselect '^M' .accept-line
 
 
 export EDITOR='nvim'
 export VISUAL='nvim'
+
+
+
+# ci"
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+
+# ci{, ci(, di{ etc..
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+
+# rangercd () {
+#     tmp="$(mktemp)"
+#     ranger --choosedir="$tmp" "$@"
+#     if [ -f "$tmp" ]; then
+#         dir="$(cat "$tmp")"
+#         rm -f "$tmp"
+#         [ --datadir "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+#     fi
+# }
+
+# overload-tab () {
+# if (( CURSOR < 1 ))
+# then zle your-new-widget
+# else zle expand-or-complete
+# fi
+# }
+# zle -N overload-tab
+# bindkey $'\t' overload-tab
+
+
+bindkey '^ ' autosuggest-accept
