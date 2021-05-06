@@ -815,3 +815,6 @@ map <Leader>f zfa
 
 map <C-n> :set noexpandtab<CR>
 set noexpandtab
+
+
+map <Leader>rt :RainbowToggle<CR>
