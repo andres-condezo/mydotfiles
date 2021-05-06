@@ -130,3 +130,5 @@ fun rainbow_main#toggle()
 	endif
 endfun
 
+
+"k
