@@ -263,6 +263,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkblue ctermbg=4
 "---------------------- Rainbow Parentheses Improved ----------------------------------------------
 
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle"
+map <Leader>rt :RainbowToggle<CR>
 
 "--------------------------------------------------------------------------------------------------
 "-------------------------------- STARTIFY --------------------------------------------------------
@@ -817,4 +818,3 @@ map <C-n> :set noexpandtab<CR>
 set noexpandtab
 
 
-map <Leader>rt :RainbowToggle<CR>
