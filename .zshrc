@@ -51,7 +51,7 @@ SPACESHIP_DIR_TRUNC=0
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -81,8 +81,8 @@ plugins=(git
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
 
+# User configuration
 
 #---------------------------------------------------------------
 #------------------- VIM MODE ----------------------------------
@@ -99,7 +99,12 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 bindkey -M viins 'ii' vi-cmd-mode
 
+# bindkey jj vi-cmd-mode
+# bindkey -s jj '\e'
+# VIM_MODE_VICMD_KEY='^D'
+
 # Change cursor shape for different vi modes.
+
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -120,10 +125,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# bindkey jj vi-cmd-mode
-# bindkey -s jj '\e'
-
-# VIM_MODE_VICMD_KEY='^D'
 
 # ci"
 autoload -U select-quoted
@@ -151,17 +152,19 @@ done
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
+#------------------- PREFERRED EDITOR ----------------------------------
+#---------------------------------------------------------------
+
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+  export VISUAL='nvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-
 
 #---------------------------------------------------------------
 #------------------- ALIAS ----------------------------------
@@ -170,11 +173,8 @@ done
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-#
+
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias c:="cd /mnt/c"
 alias d:="cd /mnt/d"
 alias e:="cd /mnt/e"
@@ -194,7 +194,6 @@ alias cpwd="pwd | tr -d '\n' | clip.exe && echo 'pwd copied to clipboard'"
 alias gdf='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 alias v="nvim"
 alias e="emacs"
-alias nf='neofetch'
 alias docd='/mnt/d/Documentos'
 alias py='python3'
 alias ipy='ipython3'
@@ -202,7 +201,7 @@ alias hol='cd /mnt/d/Documentos/Holberton'
 alias rng='ranger'
 
 #---------------------------------------------------------------
-#------------------- FUNCTIONS ----------------------------------
+#------------------ FUNCTIONS ----------------------------------
 
 c(){
 folder="compilers/"
@@ -274,8 +273,6 @@ bindkey '^e' edit-command-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export EDITOR='nvim'
-export VISUAL='nvim'
 
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ;
 export LS_COLORS
