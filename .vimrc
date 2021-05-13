@@ -59,22 +59,6 @@ set wildmenu
 set wildmode=longest,list,full
 set scrolloff=7
 
-"--------------------------------------------------------------------------------------------------
-"-------------------------------- TABS ------------------------------------------------------------
-
-" Indentación a 2 espacios
-set tabstop=8
-set shiftwidth=8
-"set shiftwidth=2                        " Change the number of space characters inserted for indentation
-set softtabstop=8
-set shiftround
-set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
-
-set smartindent                         " Makes indenting smart
-set autoindent                          " Good auto indent
-
-set noexpandtab
-"set expandtab                           " Converts tabs to spaces
 
 "--------------------------------------------------------------------------------------------------
 "------------------------------- MAP LEADER -------------------------------------------------------
@@ -817,3 +801,21 @@ map <Leader>f zfa
 map <C-n> :set noexpandtab<CR>
 set noexpandtab
 
+
+
+"--------------------------------------------------------------------------------------------------
+"-------------------------------- TABS ------------------------------------------------------------
+
+" Indentación a 2 espacios
+set tabstop=8
+set shiftwidth=8
+"set shiftwidth=2                        " Change the number of space characters inserted for indentation
+set softtabstop=8
+set shiftround
+set smarttab                            " Makes tabbing smarter will realize you have 2 vs 4
+
+set smartindent                         " Makes indenting smart
+set autoindent                          " Good auto indent
+
+set noexpandtab
+"set expandtab                           " Converts tabs to spaces
