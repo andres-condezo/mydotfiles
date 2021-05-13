@@ -261,7 +261,7 @@ bindkey -s '^o' 'lfcd\n'
 #----------------------------------------------------------------
 #-------------------  BINDKEYS ----------------------------------
 
-bindkey -M menuselect '^M' .accept-line
+# bindkey -M menuselect '^M' .accept-line
 bindkey '^ ' autosuggest-accept
 
 # Edit line in vim with ctrl-e:
@@ -272,7 +272,6 @@ bindkey '^e' edit-command-line
 #-------------------  EXPORTS ----------------------------------
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
 LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ;
 export LS_COLORS
