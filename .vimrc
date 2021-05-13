@@ -57,7 +57,7 @@ cmap w!! w !sudo tee %
 " Display all matching files when we tab complete
 set wildmenu
 set wildmode=longest,list,full
-set scrolloff=14
+set scrolloff=7
 
 "--------------------------------------------------------------------------------------------------
 "-------------------------------- TABS ------------------------------------------------------------
