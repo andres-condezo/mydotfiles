@@ -82,15 +82,14 @@ plugins=(git
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-#
 
- # bindkey -M viins 'jj' vi-cmd-mode
-#
- # VIM_MODE_VICMD_KEY='^D'
+
+#---------------------------------------------------------------
+#------------------- VIM MODE ----------------------------------
 
 # vi mode
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=20
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -98,6 +97,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
+bindkey -M viins 'ii' vi-cmd-mode
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -120,32 +120,31 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-bindkey -M viins 'jj' vi-cmd-mode
-#
 # bindkey jj vi-cmd-mode
 # bindkey -s jj '\e'
 
 # VIM_MODE_VICMD_KEY='^D'
 
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-    fi
-}
-bindkey -s '^o' 'lfcd\n'
+# ci"
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
 
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+# ci{, ci(, di{ etc..
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
 
-
-
-
+#------------------- FIN VIM MODE ----------------------------------
+#---------------------------------------------------------------
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -161,6 +160,11 @@ bindkey '^e' edit-command-line
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+
+
+#---------------------------------------------------------------
+#------------------- ALIAS ----------------------------------
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -197,8 +201,8 @@ alias ipy='ipython3'
 alias hol='cd /mnt/d/Documentos/Holberton'
 alias rng='ranger'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ; export LS_COLORS
+#---------------------------------------------------------------
+#------------------- FUNCTIONS ----------------------------------
 
 c(){
 folder="compilers/"
@@ -221,41 +225,30 @@ ctrlz() {
 zle -N ctrlz
 bindkey '^Z' ctrlz
 
-bindkey -M menuselect '^M' .accept-line
+# Use ranger to switch directories and bind it to ctrl-p
+rngcd () {
+    tmp="$(mktemp)"
+    ranger --choosedir="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        # [ --datadir "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^p' 'rngcd\n'
 
-
-export EDITOR='nvim'
-export VISUAL='nvim'
-
-
-
-# ci"
-autoload -U select-quoted
-zle -N select-quoted
-for m in visual viopp; do
-  for c in {a,i}{\',\",\`}; do
-    bindkey -M $m $c select-quoted
-  done
-done
-
-# ci{, ci(, di{ etc..
-autoload -U select-bracketed
-zle -N select-bracketed
-for m in visual viopp; do
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $m $c select-bracketed
-  done
-done
-
-# rangercd () {
-#     tmp="$(mktemp)"
-#     ranger --choosedir="$tmp" "$@"
-#     if [ -f "$tmp" ]; then
-#         dir="$(cat "$tmp")"
-#         rm -f "$tmp"
-#         [ --datadir "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-#     fi
-# }
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'lfcd\n'
 
 # overload-tab () {
 # if (( CURSOR < 1 ))
@@ -266,9 +259,25 @@ done
 # zle -N overload-tab
 # bindkey $'\t' overload-tab
 
+#----------------------------------------------------------------
+#-------------------  BINDKEYS ----------------------------------
 
+bindkey -M menuselect '^M' .accept-line
 bindkey '^ ' autosuggest-accept
 
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
-#---------------------------   FIN -------------------------------
-#----------------------------------------------------------
+#---------------------------------------------------------------
+#-------------------  EXPORTS ----------------------------------
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+LS_COLORS=$LS_COLORS:'tw=01;35:ow=01;35:' ;
+export LS_COLORS
+
+export LD_PRELOAD="/home/adrs/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
