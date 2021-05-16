@@ -704,6 +704,16 @@ nmap <silent> <Leader>ig <Plug>IndentGuidesToggle
 
 " FZF BLines
 
+
+" =================== Visual Mappings ==========================
+
+" Move 1 more lines up or down in normal and visual selection modes.
+nnoremap K :m .-2<CR>==
+nnoremap J :m .+1<CR>==
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+
+
 "--------------------------------------------------------------------------------------------------
 "----------------------------------  SPLITS -------------------------------------------------------
 
@@ -819,3 +829,4 @@ set autoindent                          " Good auto indent
 
 set noexpandtab
 "set expandtab                           " Converts tabs to spaces
+"
