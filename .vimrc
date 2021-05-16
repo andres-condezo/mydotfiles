@@ -845,15 +845,15 @@ highlight ColorColumn guibg=#25223d
 highlight ErrorMsg guibg=#25223d
 
 
-" toggle between number and relative number on ,l
-nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
-function! ToggleRelativeAbsoluteNumber()
-  if &number
-    set relativenumber
-  else
-    set number
-  endif
-endfunction
+" " toggle between number and relative number on ,l
+" nnoremap <leader>l :call ToggleRelativeAbsoluteNumber()<CR>
+" function! ToggleRelativeAbsoluteNumber()
+"   if &number
+"     set relativenumber
+"   else
+"     set number
+"   endif
+" endfunction
 
 " hi clear CursorLine
 " augroup CLClear
