@@ -32,8 +32,6 @@ set splitright                          " Vertical splits will automatically be 
 set t_Co=256                            " Support 256 colors
 set conceallevel=0                      " So that I can see `` in markdown files
 set laststatus=0                        " Always display the status line
-set number                              " Line numbers
-set relativenumber
 set cursorline                          " Enable highlighting of the current line
 set background=dark                     " tell vim what the background color looks like
 set hidden                              " Permitir cambiar de buffers sin tener que guardarlos
@@ -866,4 +864,16 @@ endfunction
 " augroup CLNRSet
 "     autocmd! ColorScheme * hi CursorLineNR cterm=bold
 " augroup END
+
+
+"--------------------------------------------------------------------------------------------------
+"-------------------------------- absolute, relative and hybrid line numbers ------------------------------------------------------------
+
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
