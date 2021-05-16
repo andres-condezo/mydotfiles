@@ -160,8 +160,8 @@ set list
 "--------------------------------------------------------------------------------------------------
 "--------------------------------  COLOR SCHEME  --------------------------------------------------
 
-" colorscheme gruvbox 
-" colorscheme nord 
+" colorscheme gruvbox
+" colorscheme nord
 
 " let g:gruvbox_contrast_dark = "hard"
 "let g:molokai_original = 1
@@ -627,9 +627,9 @@ let g:vcoolor_custom_picker = 'zenity --title "custom" --color-selection --show-
 "--------------------------------------------------------------------------------------------------
 "---------------------------------- bracey --------------------------------------------------------
 
-let g:bracey_auto_start_browser=0                                
-let g:bracey_server_allow_remote_connections=1                   
-let g:bracey_server_port=8080 
+let g:bracey_auto_start_browser=0
+let g:bracey_server_allow_remote_connections=1
+let g:bracey_server_port=8080
 
 "--------------------------------------------------------------------------------------------------
 "---------------------------------- RANGER --------------------------------------------------------
@@ -652,8 +652,8 @@ nmap <Leader>nt :NERDTreeFind<CR>
 nmap <C-t> :NERDTreeToggle<CR>
 
 " NERDTreeGitStatusUseNerdFonts
-let g:NERDTreeGitStatusUseNerdFonts = 1 
-let g:NERDTreeGitStatusShowIgnored = 1 
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusShowIgnored = 1
 let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusShowClean = 0
 let g:NERDTreeGitStatusIndicatorMapCustom = {
