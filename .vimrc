@@ -136,7 +136,6 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 " sintaxis highlighting
 Plug 'vim-syntastic/syntastic'
-let g:syntastic_python_checkers = ['pylint']
 " support sass colors
 Plug 'shmargum/vim-sass-colors'
 " pandoc
@@ -563,6 +562,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_javascript_checkers=['standard']
+let g:syntastic_javascript_standard_exec = 'semistandard'
 
 "--------------------------------------------------------------------------------------------------
 "------------------------------ NEOSNIPPETS -------------------------------------------------------
